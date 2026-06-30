@@ -2,21 +2,21 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ProductsModule } from './products/products.module';
+import { ProductsModule } from './modules/products/products.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { UsersModule } from './modules/users/users.module';
+import { CategoriaModule } from './modules/categoria/categoria.module';
+import { DatabaseModule } from './database/database.module';
+import { ConfigModule } from './config/config.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: '1234',
-      database: 'Gestion-Inventario',
-      autoLoadEntities: true,
-      synchronize: true,
-    }),
+    DatabaseModule,      // 👈 Reemplaza TODO lo relacionado con TypeOrmModule.forRoot aquí
+    AuthModule,
+    UsersModule,
+    CategoriaModule,
     ProductsModule,
+    ConfigModule
   ],
   controllers: [AppController],
   providers: [AppService],
