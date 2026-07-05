@@ -8,6 +8,7 @@ import { UsersModule } from './modules/users/users.module';
 import { CategoriaModule } from './modules/categoria/categoria.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from './config/config.module';
+import { PersonaModule } from './modules/persona/persona.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { ConfigModule } from './config/config.module';
     UsersModule,
     CategoriaModule,
     ProductsModule,
-    ConfigModule
+    ConfigModule,
+    PersonaModule
   ],
   controllers: [AppController],
   providers: [AppService],

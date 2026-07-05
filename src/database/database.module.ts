@@ -1,29 +1,18 @@
 import { Module } from '@nestjs/common';
-import { databaseProvider } from './database.providerts';
+import { databaseProvider } from './database.providers'; 
 import { ConfigService } from '../config/config.service'; 
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '../config/config.module';
-import { Configuration } from 'src/config/config.key';
 
 @Module({
   imports: [
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        type: 'postgres',
-        // Ahora sí, ambos usan exactamente la misma configuración centralizada:
-        host: config.get(Configuration.HOST),
-        port: parseInt(config.get(Configuration.PORT)), 
-        username: config.get(Configuration.USERNAME),
-        password: config.get(Configuration.PASSWORD),
-        database: config.get(Configuration.DATABASE),
-        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-        synchronize: true,
-      }),
-    }),
+    ConfigModule // 👈 Mantenemos esto para que databaseProvider pueda usar las variables de entorno
   ],
-  providers: [...databaseProvider, ConfigService],
-  exports: [...databaseProvider, TypeOrmModule], 
+  providers: [
+    ...databaseProvider, 
+    ConfigService
+  ],
+  exports: [
+    ...databaseProvider // 👈 Exportamos la conexión manual para que los módulos la usen
+  ], 
 })
 export class DatabaseModule {}
