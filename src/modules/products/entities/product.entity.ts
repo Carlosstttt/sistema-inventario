@@ -1,5 +1,6 @@
+import { PedidoProducto } from '../../pedido/entities/pedidoproducto.entity';
 import { Categoria } from '../../categoria/entities/categoria.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('products')
 export class Product {
@@ -24,4 +25,7 @@ export class Product {
   // Muchos productos pertenecen a una categoría
   @ManyToOne(() => Categoria, (categoria) => categoria.products, { onDelete: 'SET NULL' })
   categoria!: Categoria;
+
+  @OneToMany(()=>PedidoProducto,pedprod=>pedprod.producto)
+  pedidoProducto!: PedidoProducto[]
 }

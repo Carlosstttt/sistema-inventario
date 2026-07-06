@@ -9,6 +9,9 @@ import { CategoriaModule } from './modules/categoria/categoria.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from './config/config.module';
 import { PersonaModule } from './modules/persona/persona.module';
+import { RoleModule } from './modules/role/role.module';
+import { ClienteModule } from './modules/cliente/cliente.module';
+import { PedidoModule } from './modules/pedido/pedido.module';
 
 @Module({
   imports: [
@@ -18,7 +21,10 @@ import { PersonaModule } from './modules/persona/persona.module';
     CategoriaModule,
     ProductsModule,
     ConfigModule,
-    PersonaModule
+    PersonaModule,
+    RoleModule,
+    ClienteModule,
+    PedidoModule
   ],
   controllers: [AppController],
   providers: [AppService],
