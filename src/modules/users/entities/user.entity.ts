@@ -2,7 +2,8 @@ import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 import { OneToOne } from 'typeorm';
 import { Persona } from '../../persona/entities/persona.entity';
 import { Role } from '../../role/entities/role.entity';
-import { ManyToMany, JoinTable } from 'typeorm';
+import { ManyToMany, JoinTable, OneToMany } from 'typeorm';
+import { Kardex } from '../../kardex/entities/kardex.entity';
 
 @Entity('users')
 export class User {
@@ -39,4 +40,7 @@ export class User {
   @ManyToMany(() => Role, (role) => role.users, { eager: true })
   @JoinTable({ name: 'user_roles' }) // Esto crea automáticamente la tabla intermedia
   roles!: Role[];
+
+  @OneToMany(() => Kardex, (kardex) => kardex.usuario)
+  kardex_movimientos!: Kardex[];
 }

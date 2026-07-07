@@ -12,10 +12,12 @@ import { PersonaModule } from './modules/persona/persona.module';
 import { RoleModule } from './modules/role/role.module';
 import { ClienteModule } from './modules/cliente/cliente.module';
 import { PedidoModule } from './modules/pedido/pedido.module';
+import { ProveedorModule } from './modules/proveedor/proveedor.module';
+import { KardexModule } from './modules/kardex/kardex.module';
 
 @Module({
   imports: [
-    DatabaseModule,      // 👈 Reemplaza TODO lo relacionado con TypeOrmModule.forRoot aquí
+    DatabaseModule,      
     AuthModule,
     UsersModule,
     CategoriaModule,
@@ -24,7 +26,9 @@ import { PedidoModule } from './modules/pedido/pedido.module';
     PersonaModule,
     RoleModule,
     ClienteModule,
-    PedidoModule
+    PedidoModule,
+    ProveedorModule,
+    KardexModule
   ],
   controllers: [AppController],
   providers: [AppService],
