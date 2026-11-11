@@ -5,6 +5,8 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  // Configuración de CORS
+  app.enableCors()
   //class validator
   app.useGlobalPipes(new ValidationPipe());
   // Configuración de Swagger 
