@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common'; 
+import { Injectable, Inject } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Product } from './entities/product.entity';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -8,7 +8,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 export class ProductsService {
   constructor(
     @Inject('PRODUCT_REPOSITORY')
-    private readonly productRepository: Repository<Product>
+    private readonly productRepository: Repository<Product>,
   ) {}
 
   async create(createProductDto: CreateProductDto) {
@@ -17,11 +17,11 @@ export class ProductsService {
   }
 
   async findAll() {
-    return await this.productRepository.find();
+    return await this.productRepository.find({ order: { id: 'ASC' } });
   }
 
   async findOne(id: number) {
-    return await this.productRepository.findOne({ where: { id }});
+    return await this.productRepository.findOne({ where: { id } });
   }
 
   async update(id: number, updateProductDto: UpdateProductDto) {
