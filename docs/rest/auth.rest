@@ -8,3 +8,25 @@ Content-Type: application/json
 }
 
 ### login sin conexion a BDD
+### Registro de usuario nuevo
+### Registro de usuario nuevo
+POST http://127.0.0.1:3000/auth/register
+Content-Type: application/json
+
+{
+  "nombres": "Carlos",
+  "apellidos": "Espinales",
+  "identificacion": "1710034065",
+  "email": "carlos+rest@gmail.com",
+  "telefono": "0991234567",
+  "password": "Password123"
+}
+
+### Login (puedes usar email o cédula en "identificador")
+POST http://127.0.0.1:3000/auth/login
+Content-Type: application/json
+
+{
+  "identificador": "carlos+rest@gmail.com",
+  "password": "Password123"
+}
